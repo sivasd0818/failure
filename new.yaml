@@ -1,0 +1,27 @@
+- hosts: maven
+  remote_user: ec2-user
+  become: yes
+  tasks: 
+    - name: Install OpenJDK
+      yum:
+        name: openjdk-11-jre-headless
+
+    - name: download tomcat server packages
+      get_url:
+        url: http://mirrors.estointernet.in/apache/tomcat/tomcat-9/v9.0.44/bin/apache-tomcat-9.0.44.tar.gz
+        dest: /usr/local
+
+    - name: extract tomcat packages
+      unarchive:
+        src: /usr/local/apache-tomcat-9.0.44.tar.gz
+        dest: /usr/local
+        remote_src: yes
+
+    - name: start tomcat services
+      shell: nohup /usr/local/apache-tomcat-9.0.44/bin/startup.sh
+      
+    - name: Code copy
+      copy: 
+        src: ./build
+        dest: /usr/local/tomcat/webapps/
+        mode: '0777'
