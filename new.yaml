@@ -13,18 +13,18 @@
 
     - name: Download tomcat
       get_url:
-        url: https://downloads.apache.org/tomcat/tomcat-9/v9.0.50/bin/apache-tomcat-9.0.50.tar.gz
+        url: https://dlcdn.apache.org/tomcat/tomcat-9/v9.0.53/bin/apache-tomcat-9.0.53.tar.gz
         dest: /usr/local
         mode: '0777'
     - unarchive:
-        src: /usr/local/apache-tomcat-9.0.50.tar.gz
+        src: /usr/local/apache-tomcat-9.0.53.tar.gz
         dest: /usr/local
         remote_src: True
         mode: '0777'
     - name: app deploy
       copy: 
         src: ./build
-        dest: /usr/local/apache-tomcat-9.0.50/webapps/build
+        dest: /usr/local/apache-tomcat-9.0.53/webapps/build
         mode: '0777'
       
    
