@@ -27,5 +27,5 @@
     - name: Create a zip archive of /path/to/foo
       archive:
         path: ./build
-        dest: /usr/local/apache-tomcat-9.0.53/webapps/
+        dest: /usr/local/apache-tomcat-9.0.53/webapps/build.zip
         format: zip
