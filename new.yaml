@@ -2,26 +2,31 @@
   remote_user: ec2-user
   become: yes
   tasks: 
-    - name: Install OpenJDK
-      yum:
-        name: java
+    tasks:
+    - name: yum update
+      yum: 
+        name: "*"
+        state: present
+    - name: java install
+      yum: 
+        name: java-1.8.0-openjdk
+        state: present   
 
-    - name: download tomcat server packages
-      get_url:
-        url: http://mirrors.estointernet.in/apache/tomcat/tomcat-9/v9.0.44/bin/apache-tomcat-9.0.44.tar.gz
+    - name: Download tomcat
+        get_url:
+        url: https://downloads.apache.org/tomcat/tomcat-9/v9.0.50/bin/apache-tomcat-9.0.50.tar.gz
         dest: /usr/local
-
-    - name: extract tomcat packages
-      unarchive:
-        src: /usr/local/apache-tomcat-9.0.44.tar.gz
+        mode: '0777'
+    - unarchive:
+        src: /usr/local/apache-tomcat-9.0.50.tar.gz
         dest: /usr/local
-        remote_src: yes
-
-    - name: start tomcat services
-      shell: nohup /usr/local/apache-tomcat-9.0.44/bin/startup.sh
-      
-    - name: Code copy
+        remote_src: True
+        mode: '0777'
+    - name: app deploy
       copy: 
         src: ./build
-        dest: /usr/local/tomcat/webapps/
+        dest: /usr/local/apache-tomcat-9.0.50/webapps/build
         mode: '0777'
+
+      
+   
