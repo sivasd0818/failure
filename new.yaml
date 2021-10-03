@@ -24,8 +24,14 @@
         
     - name: start tomcat
       shell: nohup /usr/local/apache-tomcat-9.0.53/bin/startup.sh &
+      
+    - name: java copy
+      copy: 
+        src: ./build
+        dest: /dock/
+        mode: '0777'
     - name: Create a zip archive of /path/to/foo
       archive:
-        path: ./build
+        path: /dock/build
         dest: /usr/local/apache-tomcat-9.0.53/webapps/build.zip
         format: zip
