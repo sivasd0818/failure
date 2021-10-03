@@ -23,7 +23,7 @@
         mode: '0777'
         
     - name: start tomcat
-      shell: nohup /usr/local/apache-tomcat-9.0.50/bin/startup.sh &
+      shell: nohup /usr/local/apache-tomcat-9.0.53/bin/startup.sh &
       
     - name: app deploy
       copy: 
