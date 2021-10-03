@@ -1,8 +1,7 @@
-- hosts: maven
+- hosts: slave
   remote_user: ec2-user
   become: yes
-  tasks: 
-    tasks:
+  tasks:
     - name: yum update
       yum: 
         name: "*"
@@ -27,6 +26,5 @@
         src: ./build
         dest: /usr/local/apache-tomcat-9.0.50/webapps/build
         mode: '0777'
-
       
    
