@@ -35,3 +35,11 @@
         path: /dock/build
         dest: /usr/local/apache-tomcat-9.0.53/webapps/build.zip
         format: zip
+    - unarchive:
+        src: /usr/local/apache-tomcat-9.0.53/webapps/build.zip
+        dest: /usr/local/apache-tomcat-9.0.53/webapps/
+        remote_src: True
+    - name: remove
+      file:
+        name: /usr/local/apache-tomcat-9.0.53/webapps/build.zip
+        state: absent    
