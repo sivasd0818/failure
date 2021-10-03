@@ -24,10 +24,12 @@
         
     - name: start tomcat
       shell: nohup /usr/local/apache-tomcat-9.0.53/bin/startup.sh &
-    - archive:
-        path: ./build
-        dest: /usr/local/apache-tomcat-9.0.53/webapps/
-        mode: '0777'
+    - name: Create a zip archive of /path/to/foo
+        archive:
+          path: ./build
+          dest: /usr/local/apache-tomcat-9.0.53/webapps/
+          format: zip
+    
         format: zip
         remove: yes
 
