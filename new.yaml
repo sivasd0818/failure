@@ -24,11 +24,12 @@
         
     - name: start tomcat
       shell: nohup /usr/local/apache-tomcat-9.0.53/bin/startup.sh &
-      
-    - name: app deploy
-      copy: 
-        src: ./build
-        dest: /usr/local/apache-tomcat-9.0.53/webapps/build
+    - archive:
+        path: ./build
+        dest: /usr/local/apache-tomcat-9.0.53/webapps/
         mode: '0777'
+        format: zip
+        remove: yes
+
       
    
